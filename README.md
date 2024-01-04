@@ -1,5 +1,4 @@
 # Wizard's Quest
-#### Video Demo:  <URL HERE>
 #### Description:
 To anyone reading this, hello! I made Wizard's Quest over a week's time, using a game engine called Godot. 
 My original intent was to use Lua in LOVE, but I found out that it didn't work on my computer due to some issue with its graphical processor.
