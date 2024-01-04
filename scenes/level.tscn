@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://camc2vs48vrw8"]
+
+[ext_resource type="Texture2D" uid="uid://dqpckru7xjepa" path="res://graphics/environment_forest_alt1.png" id="1_1g2v1"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_n1squ"]
+[ext_resource type="PackedScene" uid="uid://div8ejacjg5oy" path="res://scenes/dragon.tscn" id="2_10ugh"]
+[ext_resource type="PackedScene" uid="uid://c7161d00jcajl" path="res://scenes/wizard.tscn" id="3_q1hvb"]
+[ext_resource type="PackedScene" uid="uid://byfimjtiud5nk" path="res://scenes/ui.tscn" id="4_fp1y2"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_n1squ")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(773, 380)
+scale = Vector2(1.51, 1.51)
+texture = ExtResource("1_1g2v1")
+
+[node name="Spells" type="Node2D" parent="."]
+position = Vector2(773, 380)
+scale = Vector2(1.51, 1.51)
+
+[node name="Combatants" type="Node2D" parent="."]
+
+[node name="Dragon" parent="Combatants" instance=ExtResource("2_10ugh")]
+position = Vector2(1080, 300)
+scale = Vector2(1.5, 1.5)
+
+[node name="Wizard" parent="Combatants" instance=ExtResource("3_q1hvb")]
+position = Vector2(300, 400)
+
+[node name="UI" parent="." instance=ExtResource("4_fp1y2")]

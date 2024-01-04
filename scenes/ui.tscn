@@ -1,0 +1,282 @@
+[gd_scene load_steps=12 format=3 uid="uid://byfimjtiud5nk"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_mrfob"]
+[ext_resource type="FontFile" uid="uid://16iyqajch81w" path="res://graphics/MedievalSharp/MedievalSharp-Regular.ttf" id="1_o7cg2"]
+
+[sub_resource type="Theme" id="Theme_5i3hd"]
+default_font = ExtResource("1_o7cg2")
+default_font_size = 25
+
+[sub_resource type="Theme" id="Theme_2tkrk"]
+default_font = ExtResource("1_o7cg2")
+default_font_size = 25
+
+[sub_resource type="Theme" id="Theme_sngfo"]
+default_font = ExtResource("1_o7cg2")
+
+[sub_resource type="Theme" id="Theme_slirf"]
+default_font = ExtResource("1_o7cg2")
+default_font_size = 20
+
+[sub_resource type="Animation" id="Animation_sh31e"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2jww"]
+_data = {
+"fade_to_black": SubResource("Animation_sh31e")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ugew3"]
+font = ExtResource("1_o7cg2")
+font_size = 150
+font_color = Color(0.737255, 0.529412, 0.494118, 1)
+outline_size = 10
+shadow_size = 10
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3kdl7"]
+font = ExtResource("1_o7cg2")
+font_size = 100
+font_color = Color(1, 0.113725, 0.160784, 0)
+outline_color = Color(1, 1, 1, 0)
+shadow_color = Color(1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2papq"]
+font = ExtResource("1_o7cg2")
+font_size = 100
+font_color = Color(0.176471, 0.431373, 0.85098, 1)
+outline_size = 5
+shadow_size = 5
+shadow_color = Color(1, 1, 1, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_mrfob")
+
+[node name="BattleMenu" type="VBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -107.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+tooltip_text = "Select an action!"
+theme = SubResource("Theme_5i3hd")
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="BattleMenu"]
+layout_mode = 2
+text = "Attack"
+icon_alignment = 2
+expand_icon = true
+
+[node name="MagicButton" type="Button" parent="BattleMenu"]
+layout_mode = 2
+text = "Magic"
+
+[node name="DefendButton" type="Button" parent="BattleMenu"]
+layout_mode = 2
+text = "Defend"
+
+[node name="MagicMenu" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -78.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_2tkrk")
+theme_override_constants/separation = 0
+
+[node name="ThunderButton" type="Button" parent="MagicMenu"]
+layout_mode = 2
+text = "Thunder"
+
+[node name="CureButton" type="Button" parent="MagicMenu"]
+layout_mode = 2
+text = "Cure"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.9
+anchor_right = 0.25
+anchor_bottom = 0.9
+offset_left = -0.750015
+offset_top = -13.5
+offset_right = 22.0
+offset_bottom = 13.5
+grow_vertical = 2
+theme = SubResource("Theme_sngfo")
+
+[node name="WizardHPBar" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 2000.0
+value = 2000.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_top = 0.9
+anchor_bottom = 0.9
+offset_left = 198.0
+offset_top = -9.5
+offset_right = 238.0
+offset_bottom = 48.5
+grow_vertical = 0
+theme = SubResource("Theme_slirf")
+theme_override_constants/separation = 10
+
+[node name="HPLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "HP"
+
+[node name="MPLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o7cg2")
+text = "MP"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+offset_left = 231.0
+offset_top = 718.0
+offset_right = 408.0
+offset_bottom = 745.0
+
+[node name="WizardMPBar" type="ProgressBar" parent="MarginContainer3"]
+modulate = Color(0.196078, 0.6, 1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1000.0
+value = 1000.0
+show_percentage = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1545.0
+offset_bottom = 775.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j2jww")
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -510.5
+offset_top = -120.0
+offset_right = 510.5
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu"]
+layout_mode = 2
+text = "Wizard's Quest"
+label_settings = SubResource("LabelSettings_ugew3")
+
+[node name="StartGame" type="Button" parent="MainMenu"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_o7cg2")
+theme_override_font_sizes/font_size = 50
+text = "Start Game"
+
+[node name="DefeatMenu" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.0
+offset_top = -92.0
+offset_right = 267.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DefeatMenu"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_3kdl7")
+
+[node name="Retry" type="Button" parent="DefeatMenu"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "Retry"
+
+[node name="Quit" type="Button" parent="DefeatMenu"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "Quit"
+
+[node name="VictoryMenu" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -510.5
+offset_top = -92.0
+offset_right = 510.5
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VictoryMenu"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "VICTORY"
+label_settings = SubResource("LabelSettings_2papq")
+horizontal_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="VictoryMenu"]
+layout_mode = 2
+mouse_filter = 1
+text = "Play Again"
+
+[node name="Quit" type="Button" parent="VictoryMenu"]
+layout_mode = 2
+mouse_filter = 1
+text = "Quit"
+
+[connection signal="button_up" from="BattleMenu/AttackButton" to="." method="_on_attack_button_button_up"]
+[connection signal="button_up" from="BattleMenu/MagicButton" to="." method="_on_magic_button_button_up"]
+[connection signal="button_up" from="BattleMenu/DefendButton" to="." method="_on_defend_button_button_up"]
+[connection signal="button_up" from="MagicMenu/ThunderButton" to="." method="_on_thunder_button_button_up"]
+[connection signal="button_up" from="MagicMenu/CureButton" to="." method="_on_cure_button_button_up"]
+[connection signal="button_up" from="MainMenu/StartGame" to="." method="_on_start_game_button_up"]
+[connection signal="button_up" from="DefeatMenu/Retry" to="." method="_on_retry_button_up"]
+[connection signal="button_up" from="DefeatMenu/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="VictoryMenu/PlayAgain" to="." method="_on_play_again_button_up"]
+[connection signal="button_up" from="VictoryMenu/Quit" to="." method="_on_quit_button_up"]
